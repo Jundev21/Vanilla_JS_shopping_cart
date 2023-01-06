@@ -1,0 +1,39 @@
+// basic font
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Roboto:400,700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.5;
+    font-size: 0.875rem;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+// nav bar section
+
+.navBar {
+    background: #3939ff;
+    padding: 1.5rem 10rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navLogo {
+    font-size: 1.5rem;
+}
+
+.navItems > a {
+    margin: 0 1rem;
+}
+
+// nav bar section
