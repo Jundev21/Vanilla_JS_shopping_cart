@@ -1,39 +1,50 @@
-// basic font
-@import url('https://fonts.googleapis.com/css?family=Open+Sans|Roboto:400,700&display=swap');
-
 * {
-    margin: 0;
     padding: 0;
+    margin: 0;
     box-sizing: border-box;
 }
 
 body {
-    font-family: 'Open Sans', sans-serif;
-    line-height: 1.5;
-    font-size: 0.875rem;
+    font-family: sans-serif;
 }
 
 a {
     text-decoration: none;
-    color: black;
 }
 
-// nav bar section
+/* navigation section */
 
-.navBar {
-    background: #3939ff;
-    padding: 1.5rem 10rem;
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #212529;
+    color: white;
+    padding: 2.2rem 7rem;
+}
+
+.logo-section {
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.select-section {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.navLogo {
-    font-size: 1.5rem;
+.nav-section {
+    margin-left: 1rem;
+    cursor: pointer;
+
+    font-size: 1.2rem;
 }
 
-.navItems > a {
-    margin: 0 1rem;
-}
+/* item body section */
 
-// nav bar section
+.item-container {
+    display: grid;
+    place-items: center;
+    min-height: 80vh;
+}
