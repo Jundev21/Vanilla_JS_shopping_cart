@@ -48,3 +48,24 @@ a {
     place-items: center;
     min-height: 80vh;
 }
+
+/* image section */
+
+img {
+    /* width: 100%; */
+}
+
+.slider-container {
+    min-width: 20vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid gold;
+    margin: 1rem 10rem;
+}
+
+.slider-wrapper {
+    height: 20vh;
+    display: flex;
+    width: 100%;
+}
