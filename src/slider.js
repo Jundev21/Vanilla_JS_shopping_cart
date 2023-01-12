@@ -1,8 +1,10 @@
-const wrapper = document.querySelector('.slider-wrapper');
+const wrapper = document.querySelector(".slider-wrapper");
+const cardContainer = document.querySelectorAll(".item-card");
 
-window.addEventListener('DOMContentLoaded', function () {
+window.addEventListener("DOMContentLoaded", function () {
     displaySlider();
     autoScroll();
+    moveToCard();
 });
 
 function autoScroll() {
@@ -19,15 +21,17 @@ function autoScroll() {
 
 function displaySlider() {
     itemData.forEach(function (el) {
-        let createImgDom = document.createElement('img');
+        let createImgDom = document.createElement("img");
 
-        createImgDom.classList = 'slideItems';
+        createImgDom.classList = "slideItems";
         createImgDom.id = el.id;
         createImgDom.src = el.img;
         wrapper.appendChild(createImgDom);
 
-        createImgDom.addEventListener('click', function () {
+        createImgDom.addEventListener("click", function () {
             console.log(el.name);
         });
     });
 }
+
+function moveToCard() {}

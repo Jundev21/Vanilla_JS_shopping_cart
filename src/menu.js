@@ -2,18 +2,37 @@
 // 기능 1. 첫번째 파트에 아이템 슬라이더로 메뉴를 보여준다.
 // 기능 2. 아이템들을 보여주고, 각 아이템들마다 가격, 설명, 상품 추가가 주어진다.
 
-const bodyContainer = document.querySelector('.item-body-container');
-const menuBtn = document.querySelector('.menu-btn-container');
+const bodyContainer = document.querySelector(".item-body-container");
+const menuBtn = document.querySelector(".menu-btn-container");
+const disiplayCart = document.querySelector(".nav-display-cart");
 
-window.addEventListener('DOMContentLoaded', function () {
-    displayMenuItems(itemData);
-    applyBtn(itemData);
+let currCartBasket = JSON.parse(sessionStorage.getItem("itemCart")) || [];
+
+window.addEventListener("DOMContentLoaded", function () {
+    let currMenu = document.location.href.split("#")[1];
+    let hasFilterMenu = "";
+    if (currMenu) {
+        hasFilterMenu = itemData.filter(function (el) {
+            return el.category === currMenu;
+        });
+    }
+
+    if (hasFilterMenu) {
+        displayMenuItems(itemData);
+    } else {
+        displayMenuItems(itemData);
+    }
+    applyMenuBtn(itemData);
+    applyCountBtn(itemData);
 });
 
 function displayMenuItems(itemData) {
-    let dataStr = itemData.map((el) => {
-        return `
-        <div class="main-item">
+    let dataStr = itemData
+        .map((el) => {
+            let searchItemInfo = currCartBasket.find((currBasket) => currBasket.id === el.id) || [];
+
+            return `
+        <div class="main-item" id=product-id-${el.id} >
         <div class="main-itemWrapper">
             <div class="left-section">
                 <img
@@ -25,28 +44,123 @@ function displayMenuItems(itemData) {
             <div class="right-section">
                 <div class="item-info">
                     <h4>${el.name}</h4>
-
                     <h4>${el.price}</h4>
                 </div>
                 <div class="item-desc">${el.desc}</div>
                 <div class="item-count">
-                    <span class=count-btn> -</span>
-                    <span> 0</span>
-                    <span class=count-btn> +</span>
+                    <span onclick="decrement('${el.id}')"  class="count-btn">-</span>
+                    <span id = '${el.id}'> ${
+                searchItemInfo.countItem === undefined ? 0 : searchItemInfo.countItem
+            }</span>
+                    <span onclick="increment('${el.id}')" class="count-btn">+</span>
                 </div>
             </div>
         </div>
-    </div>
+        </div>
         `;
-    });
+        })
+        .join("");
 
-    bodyContainer.innerHTML = dataStr.join('');
+    bodyContainer.innerHTML = dataStr;
 
     // bodyContainer.insertAdjacentHTML('afterend', dataStr.join(''));
 }
 
-function applyBtn(itemData) {
-    // let data = itemData.reduce(function(currVal,next){
-    //     if(currVal)
-    // },['전체'])
+function increment(itemId) {
+    let getItemCount = currCartBasket.find((el) => el.id === itemId);
+
+    if (getItemCount === undefined) {
+        currCartBasket.push({
+            id: itemId,
+            countItem: 1,
+        });
+    } else {
+        getItemCount.countItem += 1;
+    }
+
+    updateDom(itemId);
+    sessionStorage.setItem("itemCart", JSON.stringify(currCartBasket));
 }
+
+function decrement(itemId) {
+    let getItemCount = currCartBasket.find((el) => el.id === itemId);
+
+    if (getItemCount === undefined) return;
+    else if (getItemCount.countItem === 0) return;
+    else {
+        getItemCount.countItem -= 1;
+    }
+
+    updateDom(itemId);
+    let isEmptyBasket = currCartBasket.filter(function (el) {
+        return el.countItem !== 0;
+    });
+
+    sessionStorage.setItem("itemCart", JSON.stringify(isEmptyBasket));
+}
+
+function updateDom(id) {
+    let getItemCount = currCartBasket.find(function (el) {
+        return el.id === id;
+    });
+
+    console.log(currCartBasket);
+    document.getElementById(id).innerHTML = getItemCount.countItem;
+    updateCartCount();
+}
+
+function updateCartCount() {
+    let totalItemCount = currCartBasket.reduce(function (curr, next) {
+        return curr + next.countItem;
+    }, 0);
+    disiplayCart.textContent = totalItemCount;
+}
+function applyCountBtn(itemData) {
+    let itemCount = document.querySelector(".item-count");
+}
+
+function applyMenuBtn(itemData) {
+    let data = itemData.reduce(
+        function (currVal, next) {
+            if (!currVal.includes(next.displayCate)) {
+                currVal.push(next.displayCate);
+            }
+            return currVal;
+        },
+        ["전체"]
+    );
+    // menuBtn
+    let displayData = data
+        .map(function (el) {
+            return `
+        <button class="menu-btn" data-btnid=${el} id=${el}>${el}</button>
+        `;
+        })
+        .join("");
+
+    menuBtn.innerHTML = displayData;
+
+    displayMenuBtn();
+}
+
+function displayMenuBtn() {
+    let filterBtn = menuBtn.querySelectorAll(".menu-btn");
+
+    filterBtn.forEach(function (el) {
+        el.addEventListener("click", function (e) {
+            let categoryName = e.currentTarget.dataset.btnid;
+
+            let filterItems = itemData.filter(function (el2) {
+                return el2.category === categoryName;
+            });
+
+            if (categoryName === "전체") {
+                displayMenuItems(itemData);
+            } else {
+                displayMenuItems(filterItems);
+            }
+        });
+    });
+}
+
+function filterFirstRendering() {}
