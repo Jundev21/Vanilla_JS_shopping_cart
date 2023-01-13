@@ -4,16 +4,20 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link rel="stylesheet" href="styles.css" />
         <title>Jun's Restaurant</title>
     </head>
     <body>
         <nav class="nav-container">
-            <div class="logo-section">Jun's Restaurant</div>
+            <a class="logo-section" href="./index.html">Jun's Restaurant</a>
             <div class="select-section">
                 <a class="nav-section" href="./index.html">Main</a>
                 <a class="nav-section" href="./menu.html">Menu</a>
-                <a class="nav-section">Cart</a>
+                <a class="cartIcon" href="./cart.html">
+                    <span class="nav-section">Cart</span>
+                    <span class="nav-display-cart">0</span>
+                </a>
             </div>
         </nav>
 
@@ -46,7 +50,7 @@
 
         <div class="item-card-container">
             <a class="item-card" href="./menu.html#china">
-                <div class="item-card-name">중식</div>
+                <div class="item-card-name">중식 메뉴</div>
 
                 <img
                     class="item-card-img"
@@ -54,14 +58,14 @@
                 />
             </a>
             <a class="item-card" href="./menu.html#usa">
-                <div class="item-card-name">양식</div>
+                <div class="item-card-name">양식 메뉴</div>
                 <img
                     class="item-card-img"
                     src="https://image.fnnews.com/resource/media/image/2015/08/28/201508281852390479_l.jpg"
                 />
             </a>
             <a class="item-card" href="./menu.html#korea">
-                <div class="item-card-name">한식</div>
+                <div class="item-card-name">한식 메뉴</div>
 
                 <img
                     class="item-card-img"

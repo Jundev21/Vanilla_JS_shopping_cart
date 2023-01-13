@@ -8,7 +8,22 @@
         <title>Jun's Shopping Mall</title>
     </head>
     <body>
+        <nav class="nav-container">
+            <a class="logo-section" href="./index.html">Jun's Restaurant</a>
+            <div class="select-section">
+                <a class="nav-section" href="./index.html">Main</a>
+                <a class="nav-section" href="./menu.html">Menu</a>
+                <a class="cartIcon" href="./cart.html">
+                    <span class="nav-section">Cart</span>
+                    <span class="nav-display-cart">0</span>
+                </a>
+            </div>
+        </nav>
+
+        <div class="item-cart-container"></div>
+        <li class="cart-item-total-price">Total: $500</li>
+
         <script src="./lib/Data.js"></script>
-        <script src="./src/cartApp.js"></script>
+        <script src="./src/cart.js"></script>
     </body>
 </html>
