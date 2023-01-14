@@ -131,14 +131,14 @@ li {
 }
 
 .item-cart-container {
-    /* width: 90vw; */
+    width: 80vw;
     margin: 3rem auto;
     /* margin-bottom: 5rem; */
-    /* max-width: 1170px; */
+    max-width: 800px;
     display: grid;
-    gap: 1rem 1rem;
+
     justify-items: center;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
 }
 
 @media (max-width: 1000px) {
@@ -151,9 +151,10 @@ li {
     display: grid;
     max-width: 25rem;
 }
+.cart-main-item {
+}
 
 .main-itemWrapper {
-    border: 1px solid black;
     display: flex;
     border-radius: 5px;
 }
@@ -302,6 +303,62 @@ li {
 }
 
 .cart-item-total-price {
-    font-weight: bold;
     text-align: center;
+    margin: 1rem 0;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 1rem 1rem;
+}
+
+.cart-item-total-price-container {
+    width: 80%;
+}
+
+.cart-itemWrapper {
+    display: flex;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 0.4rem 1rem;
+    margin: 1rem 0;
+}
+.receiptWrapper {
+    margin: 0.5rem 0;
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: space-around;
+}
+
+.recipetItemsInfo {
+    flex: 1;
+}
+.reciptItemsTotal {
+    flex: 1;
+}
+
+.unit {
+    display: inline-block;
+    float: right;
+    padding-right: 2rem;
+}
+.totalUnit {
+    float: right;
+    padding-right: 0.5rem;
+}
+.receiptTotalContainer {
+    border-top: 2px dotted black;
+    margin: 1rem 1.5rem;
+    margin-bottom: 0;
+    padding-top: 1rem;
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: space-around;
+    font-weight: bold;
+}
+
+.displayEmpty {
+    display: grid;
+    place-items: center;
+    font-size: 3rem;
+    font-weight: bold;
+    margin-top: 10rem;
 }

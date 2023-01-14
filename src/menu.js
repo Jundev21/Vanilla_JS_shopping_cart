@@ -18,7 +18,6 @@ window.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    console.log(currMenu, hasFilterMenu);
     if (hasFilterMenu) {
         displayMenuItems(hasFilterMenu);
     } else {
@@ -55,7 +54,9 @@ function displayMenuItems(itemData) {
                     <span id = '${el.id}'> ${
                 searchItemInfo.countItem === undefined ? 0 : searchItemInfo.countItem
             }</span>
-                    <span onclick="increment('${el.id}')" class="count-btn">+</span>
+                    <span onclick="increment('${el.id}','${el.name}','${
+                el.price
+            }')" class="count-btn">+</span>
                 </div>
             </div>
         </div>
@@ -69,12 +70,14 @@ function displayMenuItems(itemData) {
     // bodyContainer.insertAdjacentHTML('afterend', dataStr.join(''));
 }
 
-function increment(itemId) {
+function increment(itemId, itemName, itemPrice) {
     let getItemCount = currCartBasket.find((el) => el.id === itemId);
 
     if (getItemCount === undefined) {
         currCartBasket.push({
             id: itemId,
+            name: itemName,
+            price: itemPrice,
             countItem: 1,
         });
     } else {
@@ -107,7 +110,8 @@ function updateDom(id) {
         return el.id === id;
     });
 
-    console.log(currCartBasket);
+    console.log(id);
+
     document.getElementById(id).innerHTML = getItemCount.countItem;
     updateCartCount();
 }
