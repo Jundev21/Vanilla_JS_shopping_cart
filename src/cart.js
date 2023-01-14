@@ -4,6 +4,8 @@ const disiplayCart = document.querySelector(".nav-display-cart");
 const itemCartContainer = document.querySelector(".item-cart-container");
 
 let currCartBasket = JSON.parse(sessionStorage.getItem("itemCart")) || [];
+
+console.log("rerender");
 window.addEventListener("DOMContentLoaded", function () {
     displayCartItems();
     updateCartCount();
@@ -11,6 +13,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
 function displayCartItems() {
     if (currCartBasket.length !== 0) {
+        console.log(currCartBasket);
         let itemContainer = currCartBasket
             .map(function (el) {
                 let basketItems = itemData.filter(function (dataInfo) {
@@ -28,13 +31,17 @@ function displayCartItems() {
                         <div class="right-section">
                                 <div class="item-info">
                                     <h4>${basketItems.name}</h4>
-                                    <h4>${basketItems.price}</h4>
+                                    <h4>${makeMoneyComma(basketItems.price)} 원</h4>
                                 </div>
                                 <div class="item-desc">${basketItems.desc}</div>
                                 <div class="item-count">
-                                    <span onclick="decrement('${basketItems.id}')"  class="count-btn">-</span>
+                                    <span onclick="decrement('${
+                                        basketItems.id
+                                    }')"  class="count-btn">-</span>
                                     <span id = '${basketItems.id}'> ${el.countItem}</span>
-                                    <span onclick="increment('${basketItems.id}','${basketItems.name}','${el.price}')" class="count-btn">+</span>
+                                    <span onclick="increment('${
+                                        basketItems.id
+                                    }','${basketItems.name}','${el.price}')" class="count-btn">+</span>
                                 </div>
                         </div>
                 </div>            
@@ -43,40 +50,56 @@ function displayCartItems() {
             .join("");
         cartItems.innerHTML = itemContainer;
 
-        let totalItemPrice = 0;
         let receiptContainer =
             `  <div class="cart-item-total-price">` +
             `<h3>영수증</h3>` +
             currCartBasket
                 .map(function (currItem) {
                     let itemSum = currItem.countItem * currItem.price;
-                    totalItemPrice += itemSum;
                     return `
             
             <div class="receiptWrapper">
-                <div class="recipetItemsInfo">${currItem.name} * ${currItem.countItem}  </div>
+                <div class="recipetItemsInfo">${
+                    currItem.name
+                } * <span class='cartCountItem'>${currItem.countItem} </span> </div>
                 <div>=</div>
-                <div class="reciptItemsTotal">${itemSum} <span class='unit'>원</span></div>
+                <div class="reciptItemTotal">${makeMoneyComma(
+                    itemSum
+                )} <span class='unit'>원</span></div>
             </div>
             `;
                 })
                 .join("") +
             `
                 <div class="receiptTotalContainer">
-                    <div class="recipetItemsInfo">total</div>
-                    <div class="reciptItemsTotal">${totalItemPrice} <span class='totalUnit'>원</span></div>
+                    <div class="recipetItemsInfo">총금액</div>
+            ${getTotalPrice()}
                 </div>
             </div>
                 `;
 
-        cartItemsContainer.innerHTML += receiptContainer;
+        cartItemsContainer.innerHTML = receiptContainer;
     } else {
+        cartItems.innerHTML = "";
+        cartItemsContainer.innerHTML = "";
         const showCartStatus = document.createElement("div");
         showCartStatus.classList = "displayEmpty";
         showCartStatus.textContent = "장바구니가 비어있습니다.";
-        itemCartContainer.appendChild = showCartStatus;
+        itemCartContainer.appendChild(showCartStatus);
         // itemCartContainer.innerHTML = `< class='displayEmpty> 장바구니가 비어있습니다.</div>`;
     }
+}
+
+function getTotalPrice() {
+    let totalPrice = currCartBasket.reduce(function (currItem, nextItem) {
+        return currItem + nextItem.countItem * nextItem.price;
+    }, 0);
+
+    return ` 
+    <div class="reciptItemsTotal">${makeMoneyComma(
+        totalPrice
+    )} <span class='totalUnit'>원</span></div>
+    `;
 }
 
 function updateCartCount() {
@@ -102,6 +125,8 @@ function increment(itemId, itemName, itemPrice) {
     }
 
     updateDom(itemId);
+    displayCartItems();
+
     sessionStorage.setItem("itemCart", JSON.stringify(currCartBasket));
 }
 
@@ -115,20 +140,26 @@ function decrement(itemId) {
     }
 
     updateDom(itemId);
-    let isEmptyBasket = currCartBasket.filter(function (el) {
+    currCartBasket = currCartBasket.filter(function (el) {
         return el.countItem !== 0;
     });
+    displayCartItems();
 
-    sessionStorage.setItem("itemCart", JSON.stringify(isEmptyBasket));
+    sessionStorage.setItem("itemCart", JSON.stringify(currCartBasket));
 }
 
 function updateDom(id) {
+    const totalPriceDom = document.querySelector(".reciptItemsTotal");
+    let updateTotalPrice = getTotalPrice();
+
     let getItemCount = currCartBasket.find(function (el) {
         return el.id === id;
     });
 
     console.log(currCartBasket);
+
     document.getElementById(id).innerHTML = getItemCount.countItem;
+
     updateCartCount();
 }
 
@@ -138,6 +169,7 @@ function updateCartCount() {
     }, 0);
     disiplayCart.textContent = totalItemCount;
 }
+
 function applyCountBtn(itemData) {
     let itemCount = document.querySelector(".item-count");
 }
@@ -211,4 +243,8 @@ function displayMenuBtn() {
             }
         });
     });
+}
+
+function makeMoneyComma(beforeComma) {
+    return beforeComma.toLocaleString();
 }

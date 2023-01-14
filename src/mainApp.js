@@ -1,5 +1,5 @@
 const wrapper = document.querySelector(".slider-wrapper");
-const cardContainer = document.querySelectorAll(".item-card");
+const cardContainer = document.querySelectorAll(".item-card-container");
 const disiplayCart = document.querySelector(".nav-display-cart");
 
 let currCartBasket = JSON.parse(sessionStorage.getItem("itemCart")) || [];
@@ -42,4 +42,18 @@ function updateCartCount() {
         return curr + next.countItem;
     }, 0);
     disiplayCart.textContent = totalItemCount;
+}
+
+function displayMenuCard() {
+    const itemCard = document.createElement("a");
+
+    linkData.forEach(function (el) {
+        itemCard.href = el;
+    });
+
+    itemCard.classList = "item-card";
+
+    const cardName = document.createElement("div");
+
+    cardName.classList = "item-card-name";
 }

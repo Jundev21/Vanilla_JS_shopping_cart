@@ -94,7 +94,7 @@ li {
 .slider-title {
     margin: 1rem;
     text-align: center;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: bold;
 }
 
@@ -133,16 +133,17 @@ li {
 .item-cart-container {
     width: 80vw;
     margin: 3rem auto;
-    /* margin-bottom: 5rem; */
     max-width: 800px;
+}
+.item-cart-wapper {
+    /* margin-bottom: 5rem; */
     display: grid;
-
     justify-items: center;
     grid-template-columns: 1fr 1fr;
 }
 
 @media (max-width: 1000px) {
-    .item-body-container {
+    .item-body-wapper {
         grid-template-columns: 1fr;
     }
 }
@@ -180,7 +181,7 @@ li {
 }
 
 .cart-img {
-    width: 100px;
+    width: 130px;
     height: 100px;
     border: 3px solid #212529;
 }
@@ -318,7 +319,7 @@ li {
     display: flex;
     border: 1px solid black;
     border-radius: 5px;
-    padding: 0.4rem 1rem;
+    padding: 0.4rem 0.5rem;
     margin: 1rem 0;
 }
 .receiptWrapper {
@@ -329,6 +330,10 @@ li {
 }
 
 .recipetItemsInfo {
+    flex: 1;
+}
+
+.reciptItemTotal {
     flex: 1;
 }
 .reciptItemsTotal {
@@ -358,7 +363,20 @@ li {
 .displayEmpty {
     display: grid;
     place-items: center;
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: bold;
-    margin-top: 10rem;
+    margin-top: 15rem;
+}
+
+.showMainMenu {
+    margin: 0 2rem;
+    padding: 1rem;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.mainMenuTitle {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 0.4rem 0;
 }

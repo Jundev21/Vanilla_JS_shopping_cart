@@ -46,7 +46,7 @@ function displayMenuItems(itemData) {
             <div class="right-section">
                 <div class="item-info">
                     <h4>${el.name}</h4>
-                    <h4>${el.price}</h4>
+                    <h4>${makeMoneyComma(el.price)} 원</h4>
                 </div>
                 <div class="item-desc">${el.desc}</div>
                 <div class="item-count">
@@ -197,4 +197,6 @@ function displayMenuBtn() {
     });
 }
 
-function filterFirstRendering() {}
+function makeMoneyComma(beforeComma) {
+    return beforeComma.toLocaleString();
+}
