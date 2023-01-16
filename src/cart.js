@@ -5,7 +5,6 @@ const itemCartContainer = document.querySelector(".item-cart-container");
 
 let currCartBasket = JSON.parse(sessionStorage.getItem("itemCart")) || [];
 
-console.log("rerender");
 window.addEventListener("DOMContentLoaded", function () {
     displayCartItems();
     updateCartCount();

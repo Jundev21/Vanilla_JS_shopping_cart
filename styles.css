@@ -143,7 +143,11 @@ li {
 }
 
 @media (max-width: 1000px) {
-    .item-body-wapper {
+    .item-body-container {
+        grid-template-columns: 1fr;
+    }
+
+    .item-cart-wapper {
         grid-template-columns: 1fr;
     }
 }
