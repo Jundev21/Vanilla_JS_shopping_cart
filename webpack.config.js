@@ -16,11 +16,4 @@ module.exports = {
     module: {
         rules: [{ test: /\.css$/, use: "css-loader" }],
     },
-    plugins: [
-        new HtmlWebpackPlugin({
-            template1: "./index.html",
-            template2: "./cart.html",
-            template3: "/menu.html",
-        }),
-    ],
 };

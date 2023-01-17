@@ -1,1 +1,64 @@
-<!doctype html><html><head><meta charset="utf-8"><title>Webpack App</title><meta name="viewport" content="width=device-width,initial-scale=1"><script defer="defer" src="cart.bundle.js"></script><script defer="defer" src="main.bundle.js"></script><script defer="defer" src="menu.bundle.js"></script></head><body></body></html>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" href="styles.css" />
+        <title>Jun's Restaurant</title>
+    </head>
+    <body>
+        <nav class="nav-container">
+            <a class="logo-section" href="./index.html">Jun's Restaurant</a>
+            <div class="select-section">
+                <a class="nav-section" href="./index.html">Main</a>
+                <a class="nav-section" href="./menu.html">Menu</a>
+                <a class="cartIcon" href="./cart.html">
+                    <span class="nav-section">Cart</span>
+                    <span class="nav-display-cart">0</span>
+                </a>
+            </div>
+        </nav>
+
+        <div class="slider-section">
+            <div class="slider-title">오늘의 메뉴</div>
+            <div class="slider-container">
+                <div class="slider-wrapper"></div>
+            </div>
+        </div>
+        <div class="item-card-main-container">
+            <div class="showMainMenu">
+                <div class="mainMenuTitle">메뉴 보러가기</div>
+                <div class="item-card-container">
+                    <a class="item-card" href="./menu.html#china">
+                        <div class="item-card-name">중식 메뉴</div>
+
+                        <img
+                            class="item-card-img"
+                            src="https://newsimg.sedaily.com/2022/03/13/263EHMUU2T_3.jpg"
+                        />
+                    </a>
+                    <a class="item-card" href="./menu.html#usa">
+                        <div class="item-card-name">양식 메뉴</div>
+                        <img
+                            class="item-card-img"
+                            src="https://image.fnnews.com/resource/media/image/2015/08/28/201508281852390479_l.jpg"
+                        />
+                    </a>
+                    <a class="item-card" href="./menu.html#korea">
+                        <div class="item-card-name">한식 메뉴</div>
+
+                        <img
+                            class="item-card-img"
+                            src="http://kofice.or.kr/dext5editordata/2017/12/20171201_095218745_62949.jpg"
+                        />
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <script src="./lib/Data.js"></script>
+        <script src="./src/mainApp.js"></script>
+    </body>
+</html>
