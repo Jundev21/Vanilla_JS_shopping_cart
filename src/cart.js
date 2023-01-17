@@ -7,7 +7,7 @@ let currCartBasket = JSON.parse(sessionStorage.getItem("itemCart")) || [];
 
 window.addEventListener("DOMContentLoaded", function () {
     displayCartItems();
-    updateCartCount();
+    cartUpdateCartCount();
 });
 
 function displayCartItems() {
@@ -101,7 +101,7 @@ function getTotalPrice() {
     `;
 }
 
-function updateCartCount() {
+function cartUpdateCartCount() {
     let totalItemCount = currCartBasket.reduce(function (curr, next) {
         return curr + next.countItem;
     }, 0);
@@ -159,10 +159,10 @@ function updateDom(id) {
 
     document.getElementById(id).innerHTML = getItemCount.countItem;
 
-    updateCartCount();
+    cartUpdateCartCount();
 }
 
-function updateCartCount() {
+function cartUpdateCartCount() {
     let totalItemCount = currCartBasket.reduce(function (curr, next) {
         return curr + next.countItem;
     }, 0);

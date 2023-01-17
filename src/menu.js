@@ -1,7 +1,6 @@
 // menu 기능 1.
 // 기능 1. 첫번째 파트에 아이템 슬라이더로 메뉴를 보여준다.
 // 기능 2. 아이템들을 보여주고, 각 아이템들마다 가격, 설명, 상품 추가가 주어진다.
-
 const bodyContainer = document.querySelector(".item-body-container");
 const menuBtn = document.querySelector(".menu-btn-container");
 const disiplayCart = document.querySelector(".nav-display-cart");
