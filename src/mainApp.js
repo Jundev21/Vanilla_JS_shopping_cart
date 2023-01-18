@@ -35,13 +35,6 @@ function displaySlider() {
     });
 }
 
-function mainUpdateCartCount() {
-    let totalItemCount = currCartBasket.reduce(function (curr, next) {
-        return curr + next.countItem;
-    }, 0);
-    disiplayCart.textContent = totalItemCount;
-}
-
 function displayMenuCard() {
     const itemCard = document.createElement("a");
 
