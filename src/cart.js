@@ -101,12 +101,12 @@ function getTotalPrice() {
     `;
 }
 
-function cartUpdateCartCount() {
-    let totalItemCount = currCartBasket.reduce(function (curr, next) {
-        return curr + next.countItem;
-    }, 0);
-    disiplayCart.textContent = totalItemCount;
-}
+// function cartUpdateCartCount() {
+//     let totalItemCount = currCartBasket.reduce(function (curr, next) {
+//         return curr + next.countItem;
+//     }, 0);
+//     disiplayCart.textContent = totalItemCount;
+// }
 
 function increment(itemId, itemName, itemPrice) {
     let getItemCount = currCartBasket.find((el) => el.id === itemId);
