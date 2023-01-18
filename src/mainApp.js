@@ -2,6 +2,8 @@ const wrapper = document.querySelector(".slider-wrapper");
 const cardContainer = document.querySelectorAll(".item-card-container");
 const disiplayCart = document.querySelector(".nav-display-cart");
 
+let currCartBasket = JSON.parse(sessionStorage.getItem("itemCart")) || [];
+
 window.addEventListener("DOMContentLoaded", function () {
     displaySlider();
     autoScroll();
@@ -33,6 +35,13 @@ function displaySlider() {
             console.log(el.name);
         });
     });
+}
+
+function mainUpdateCartCount() {
+    let totalItemCount = currCartBasket.reduce(function (curr, next) {
+        return curr + next.countItem;
+    }, 0);
+    disiplayCart.textContent = totalItemCount;
 }
 
 function displayMenuCard() {
