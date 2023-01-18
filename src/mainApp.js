@@ -6,19 +6,21 @@ let currCartBasket = JSON.parse(sessionStorage.getItem("itemCart")) || [];
 
 window.addEventListener("DOMContentLoaded", function () {
     displaySlider();
-    autoScroll();
     mainUpdateCartCount();
+    autoScroll();
 });
 
 function autoScroll() {
     const totalWidth = wrapper.scrollWidth;
 
     setInterval(() => {
-        if (wrapper.offsetWidth + wrapper.scrollLeft >= totalWidth) {
-            wrapper.scrollLeft = 0;
+        if (wrapper.scrollLeft <= totalWidth) {
+            wrapper.scrollLeft += 500;
         } else {
-            wrapper.scrollLeft = wrapper.scrollLeft + 500;
+            wrapper.scrollLeft = 0;
         }
+
+        console.log(wrapper.scrollLeft, wrapper.offsetWidth, totalWidth);
     }, 2000);
 }
 
