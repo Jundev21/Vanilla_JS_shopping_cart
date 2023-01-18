@@ -14,10 +14,10 @@ function autoScroll() {
     const totalWidth = wrapper.scrollWidth;
 
     setInterval(() => {
-        wrapper.scrollLeft = wrapper.scrollLeft + 500;
-
         if (wrapper.offsetWidth + wrapper.scrollLeft >= totalWidth) {
             wrapper.scrollLeft = 0;
+        } else {
+            wrapper.scrollLeft = wrapper.scrollLeft + 500;
         }
     }, 2000);
 }
